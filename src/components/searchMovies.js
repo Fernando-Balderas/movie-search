@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import MovieCard from "./movieCard"
 
-export default function SearchMovies() {
+function SearchMovies() {
 
     // states input query, movies
     const [query, setQuery] = useState('');
@@ -10,11 +10,13 @@ export default function SearchMovies() {
 
     const searchMovies = async (e) => {
         e.preventDefault();
-        console.log("submitting")
+        if (query === '') {
+            console.warn('Empty query');
+            return;
+        }
+        console.log("submitting");
 
         const APIKEY = "dba03568c8024d9d9480b3fc8045631a";
-        // const query = "Jurassic World";
-
         const url = `https://api.themoviedb.org/3/search/movie?api_key=${APIKEY}&language=en-US&page=1&include_adult=false&query=${query}`;
         
         try {
@@ -23,7 +25,7 @@ export default function SearchMovies() {
             setMovies(data.results);
             console.log(data);
         }catch(err){
-            console.error(err)
+            console.error(err);
         }
     }
 
@@ -44,3 +46,5 @@ export default function SearchMovies() {
         </>
     )
 }
+
+export default SearchMovies;
