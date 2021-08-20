@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
 import { updateMovies } from './searchSlice'
 import { TMBD_URL, API_KEY } from '../../helpers/constants';
+import axios from '../../helpers/axios';
 
 function SearchForm() {
 
@@ -16,13 +17,10 @@ function SearchForm() {
         }
         console.log("submitting");
         const url = `${TMBD_URL}&api_key=${API_KEY}&query=${query}`;
-        try {
-            const res = await fetch(url);
-            const data = await res.json();
-            dispatch(updateMovies(data.results));
-        }catch(err){
-            console.error(err);
-        }
+        axios.get(url)
+            .then(function(response) {
+                dispatch(updateMovies(response.data.results));
+            });
     }
 
     return (
