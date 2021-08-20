@@ -9,13 +9,12 @@ function SearchForm() {
     const [query, setQuery] = useState('');
     const dispatch = useDispatch();
 
-    const searchMovies = async (e) => {
+    const searchMovies = (e) => {
         e.preventDefault();
         if (query === '') {
             console.warn('Empty query');
             return;
         }
-        console.log("submitting");
         const url = `${TMBD_URL}&api_key=${API_KEY}&query=${query}`;
         axios.get(url)
             .then(function(response) {
