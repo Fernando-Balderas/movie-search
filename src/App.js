@@ -1,11 +1,13 @@
 import './App.css';
-import SearchMovies from "./components/searchMovies";
+import SearchForm from "./features/search/SearchForm";
+import MoviesList from "./features/movies/MoviesList";
 
 function App() {
   return (
     <div className="container">
       <h1 className="title">React Movie Search</h1>
-      <SearchMovies />
+      <SearchForm />
+      <MoviesList />
     </div>
   );
 }

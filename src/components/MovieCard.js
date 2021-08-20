@@ -1,10 +1,12 @@
 import React from "react";
+import { TMBD_IMG_URL } from '../helpers/constants';
 
 function MovieCard({ movie }) {
+  const imgSrc = `${TMBD_IMG_URL}${movie.poster_path}`;
   return (
     <div className="card">
       <img className="card--image"
-        src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}`}
+        src={imgSrc}
         alt={`${movie.title} poster`}
       />
       <div className="card--content">
