@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
 import { updateMovies } from './searchSlice'
-import { TMBD_URL, API_KEY } from '../../helpers/constants';
 import axios from '../../helpers/axios';
+import { TMBD_URL, API_KEY } from '../../helpers/constants';
 
 function SearchForm() {
 
     const [query, setQuery] = useState('');
+    const [previousQuery, setPreviousQuery] = useState('');
     const dispatch = useDispatch();
 
     const searchMovies = (e) => {
@@ -15,11 +16,16 @@ function SearchForm() {
             console.warn('Empty query');
             return;
         }
+        if (query === previousQuery) {
+            console.warn('Equal query');
+            return;
+        }
         const url = `${TMBD_URL}&api_key=${API_KEY}&query=${query}`;
         axios.get(url)
             .then(function(response) {
                 dispatch(updateMovies(response.data.results));
             });
+        setPreviousQuery(query);
     }
 
     return (
