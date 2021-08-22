@@ -6,7 +6,7 @@ export interface IMovieCardProps {
   movie: IMovie
 }
 
-function MovieCard(props: IMovieCardProps) {
+const MovieCard: React.FC<IMovieCardProps> = (props) => {
   const { movie } = props;
   const imgSrc = `${TMBD_IMG_URL}${movie.poster_path}`;
   return (

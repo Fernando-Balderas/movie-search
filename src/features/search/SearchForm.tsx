@@ -5,11 +5,12 @@ import axios from '../../helpers/axios';
 import { useForm } from "react-hook-form";
 import { TMBD_URL, API_KEY } from '../../helpers/constants';
 
+export interface ISearchFormProps {}
 export interface IData {
     query: string
 }
 
-function SearchForm() {
+const SearchForm: React.FC<ISearchFormProps> = () => {
 
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();

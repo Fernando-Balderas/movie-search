@@ -1,3 +1,6 @@
+import IMovie from "./movie";
 export default interface IState {
-    search: any
+    search: {
+        movies: IMovie[]
+    }
 }

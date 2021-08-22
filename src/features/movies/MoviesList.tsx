@@ -4,7 +4,9 @@ import MovieCard from "../../components/MovieCard"
 import IMovie from '../../interfaces/movie';
 import IState from '../../interfaces/state';
 
-function MoviesList() {
+export interface IMoviesListProps {}
+
+const MoviesList: React.FC<IMoviesListProps> = () => {
     const movies = useSelector((state: IState) => state.search.movies);
     return (
         <div className="card-list">
