@@ -1,7 +1,13 @@
 import React from "react";
 import { TMBD_IMG_URL } from '../helpers/constants';
+import IMovie from '../interfaces/movie';
 
-function MovieCard({ movie }) {
+export interface IMovieCardProps {
+  movie: IMovie
+}
+
+const MovieCard: React.FC<IMovieCardProps> = (props) => {
+  const { movie } = props;
   const imgSrc = `${TMBD_IMG_URL}${movie.poster_path}`;
   return (
     <div className="card">
