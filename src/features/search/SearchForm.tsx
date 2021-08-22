@@ -5,7 +5,12 @@ import axios from '../../helpers/axios';
 import { useForm } from "react-hook-form";
 import { TMBD_URL, API_KEY } from '../../helpers/constants';
 
-function SearchForm() {
+export interface ISearchFormProps {}
+export interface IData {
+    query: string
+}
+
+const SearchForm: React.FC<ISearchFormProps> = () => {
 
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -23,7 +28,7 @@ function SearchForm() {
         fetchMovies();
     }, [dispatch, query])
     
-    const onSubmitSearch = (data) => {
+    const onSubmitSearch = (data: IData) => {
         const queryTrimmed = data.query.trim();
         if (queryTrimmed === '') {
             console.warn('Empty query');
